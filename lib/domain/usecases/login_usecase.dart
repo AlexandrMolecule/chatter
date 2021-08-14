@@ -1,9 +1,10 @@
 import 'package:chatter/data/auth_repository.dart';
 import 'package:chatter/data/stream_api__repository.dart';
 import 'package:chatter/domain/exceptions/auth_exception.dart';
+import 'package:chatter/domain/models/auth_user.dart';
 
-class LoginUserCase {
-  LoginUserCase(
+class LoginUseCase {
+  LoginUseCase(
     this.authRepository,
     this.streamApiRepository,
   );
@@ -23,4 +24,11 @@ class LoginUserCase {
     else
     throw AuthException(AuthErrorCode.not_auth);
   }
+Future<AuthUser?> signIn() async{
+ return await authRepository.signIn();
+}
+
+
+
+
 }

@@ -12,7 +12,7 @@ class SignInView extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return BlocProvider(
-      create: (_) => SignInCubit(),
+      create: (context) => SignInCubit(context.read()),
       child: BlocConsumer<SignInCubit, SignInState>(
         listener: (context, snapshot) {
           if (snapshot == SignInState.none) {

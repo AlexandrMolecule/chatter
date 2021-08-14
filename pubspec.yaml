@@ -18,7 +18,14 @@ dependencies:
   uuid: ^3.0.4
   image_picker: ^0.8.3+2
 
+  # firebase 
+  firebase_core: ^1.4.0
+  firebase_auth: ^3.0.1
+  firebase_storage: ^10.0.1
 
+
+  google_sign_in: ^5.0.7
+  shared_preferences: ^2.0.6
   cupertino_icons: ^1.0.2
 
 dev_dependencies:

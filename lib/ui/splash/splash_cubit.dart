@@ -9,13 +9,13 @@ enum SplashState {
 }
 
 class SplashCubit extends Cubit<SplashState> {
-  SplashCubit(this._loginUserCase) : super(SplashState.none);
+  SplashCubit(this._loginUseCase) : super(SplashState.none);
 
-  final LoginUserCase _loginUserCase;
+  final LoginUseCase _loginUseCase;
 
   void init() async {
     try {
-      final result = await _loginUserCase.validateLogin();
+      final result = await _loginUseCase.validateLogin();
       if (result) {
         emit(SplashState.existing_user);
       }

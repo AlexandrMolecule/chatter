@@ -1,6 +1,5 @@
 import 'package:chatter/data/stream_api__repository.dart';
 import 'package:chatter/domain/models/chat_user.dart';
-import 'package:flutter/cupertino.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:stream_chat_flutter/stream_chat_flutter.dart';
 
