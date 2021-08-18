@@ -8,13 +8,16 @@ import 'package:stream_chat_flutter/stream_chat_flutter.dart';
 import 'friends_selection_cubit.dart';
 
 class GroupSelectionState {
-  const GroupSelectionState(this.file, {this.channel});
+  const GroupSelectionState({this.file, this.channel});
   final File? file;
   final Channel? channel;
 }
 
 class GroupSelectionCubit extends Cubit<GroupSelectionState> {
-  GroupSelectionCubit(this.members, this._createGroupUseCase, this._imagePickerRepository) : super(null as GroupSelectionState);
+  GroupSelectionCubit(
+    this.members,
+     this._createGroupUseCase,
+      this._imagePickerRepository) : super(GroupSelectionState());
 
     final CreateGroupUseCase _createGroupUseCase;
   final nameTextController = TextEditingController();
@@ -23,15 +26,15 @@ class GroupSelectionCubit extends Cubit<GroupSelectionState> {
 
   void createGroup() async {
     final channel = await _createGroupUseCase.createGroup(CreateGroupInput(
-      imageFile: state.file!,
+      imageFile: state.file,
       members: members.map((e) => e.chatUser.id!).toList(),
       name: nameTextController.text
       ));
-    emit(GroupSelectionState(state.file, channel: channel));
+    emit(GroupSelectionState(file: state.file, channel: channel));
   }
 
   void pickImage() async {
     final image = await _imagePickerRepository.pickImage();
-    emit(GroupSelectionState(image));
+    emit(GroupSelectionState(file: image));
   }
 }

@@ -2,12 +2,15 @@ import 'package:chatter/dependencies.dart';
 import 'package:chatter/ui/splash/splash_view.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:stream_chat_flutter/stream_chat_flutter.dart';
 
 import 'ui/app_theme_cubit.dart';
 
 void main() async{
+  SystemChrome.setSystemUIOverlayStyle(const SystemUiOverlayStyle(
+statusBarColor: Colors.transparent,));
   WidgetsFlutterBinding.ensureInitialized();
   await Firebase.initializeApp();
   runApp(MyApp());
@@ -26,6 +29,7 @@ class MyApp extends StatelessWidget {
         create: (context) => AppThemeCubit(context.read())..init(),
         child: BlocBuilder<AppThemeCubit, bool>(builder: (context, snapshot) {
           return MaterialApp(
+            debugShowCheckedModeBanner: false,
               title: 'Flutter Demo',
               theme: snapshot ? ThemeData.dark() : ThemeData.light(),
               builder: (context, child) {

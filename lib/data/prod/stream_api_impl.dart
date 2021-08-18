@@ -3,16 +3,18 @@ import 'package:stream_chat/src/client/channel.dart';
 import 'package:chatter/domain/models/chat_user.dart';
 import 'package:stream_chat_flutter/stream_chat_flutter.dart';
 
-class StreamApiImpl extends StreamApiRepository{
+class StreamApiImpl extends StreamApiRepository {
   StreamApiImpl(this._client);
 
   final StreamChatClient _client;
 
   @override
-    Future<bool> connectIfExist(String userId) async {
+  Future<bool> connectIfExist(String userId) async {
+    // await _client.disconnectUser();
     final token = await getToken(userId);
     await _client.connectUser(User(id: userId), token);
-    return _client.state.currentUser?.name != null ;
+    return _client.state.currentUser?.name != null;
+    // return false;
   }
 
   @override
@@ -24,7 +26,7 @@ class StreamApiImpl extends StreamApiRepository{
     if (user.name != null) {
       extraData['name'] = user.name;
     }
-    await _client.disconnectUser();
+    // await _client.disconnectUser();
     await _client.connectUser(User(id: user.id!, extraData: extraData), token);
     return user;
   }
@@ -56,11 +58,14 @@ class StreamApiImpl extends StreamApiRepository{
   @override
   Future<List<ChatUser>> getChatUsers() async {
     final result = await _client.queryUsers(
-      filter: Filter.notEqual('id', _client.state.currentUser!.id)
-    );
+        filter: Filter.notEqual('id', _client.state.currentUser!.id));
 
-        final chatUsers = result.users.map((e) => ChatUser(
-            name: e.name, id: e.id, image: e.extraData['image'] as String? ?? 'https://eu.ui-avatars.com/api/?name=${e.name}'))
+    final chatUsers = result.users
+        .map((e) => ChatUser(
+            name: e.name,
+            id: e.id,
+            image: e.extraData['image'] as String? ??
+                'https://eu.ui-avatars.com/api/?name=${e.name}'))
         .toList();
     return chatUsers;
   }
@@ -74,5 +79,4 @@ class StreamApiImpl extends StreamApiRepository{
   Future<void> logout() {
     return _client.disconnectUser();
   }
-
 }

@@ -18,10 +18,12 @@ class AuthImpl extends AuthRepository {
   @override
   Future<void> logout() async {
     _auth.signOut();
+    await GoogleSignIn().disconnect();
+    await GoogleSignIn().signOut();
   }
 
   @override
-  Future<AuthUser> signIn() async{
+  Future<AuthUser?> signIn() async{
     try {
       UserCredential userCredential;
       final GoogleSignInAccount? googleUser = await GoogleSignIn().signIn();
@@ -31,7 +33,10 @@ class AuthImpl extends AuthRepository {
         idToken: googleAuth.idToken,);
       userCredential = await _auth.signInWithCredential(googleAuthCredential);
       final user = userCredential.user;
-      return AuthUser(user!.uid);
+      if(user != null){
+       return AuthUser(user.uid);
+      }
+      else null;
 
     } catch (e) {
       print(e);

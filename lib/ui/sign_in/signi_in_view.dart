@@ -12,12 +12,12 @@ class SignInView extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return BlocProvider(
-      create: (context) => SignInCubit(context.read()),
+      create: (context) => SignInCubit(context.read(),),
       child: BlocConsumer<SignInCubit, SignInState>(
         listener: (context, snapshot) {
           if (snapshot == SignInState.none) {
             pushAndReplaceToPage(context, ProfileVerifyView());
-          } else {
+          } else if(snapshot == SignInState.existing_user){
             pushAndReplaceToPage(context, HomeView());
           }
         },
@@ -29,9 +29,7 @@ class SignInView extends StatelessWidget {
                 children: [
                   Text('welcome'),
                   ElevatedButton(
-                      onPressed: () {
-                        context.read<SignInCubit>().signIn();
-                      },
+                      onPressed: () { context.read<SignInCubit>().signIn(); },
                       child: Text('Login with Google'))
                 ],
               ),

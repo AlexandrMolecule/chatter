@@ -21,7 +21,6 @@ class LoginUseCase {
         throw AuthException(AuthErrorCode.not_chat_user);
       }
     }
-    else
     throw AuthException(AuthErrorCode.not_auth);
   }
 Future<AuthUser?> signIn() async{

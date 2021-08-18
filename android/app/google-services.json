@@ -1,0 +1,47 @@
+{
+  "project_info": {
+    "project_number": "822594249400",
+    "project_id": "realchat-e7a50",
+    "storage_bucket": "realchat-e7a50.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:822594249400:android:99462972df4506823d0a4d",
+        "android_client_info": {
+          "package_name": "com.example.chatter"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "822594249400-6osk6l3ss5d5e9tpoaud9rg2eouifbdl.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.chatter",
+            "certificate_hash": "80ef3b36b7dffac4ef42a6ad8f25c34fc09e0f4e"
+          }
+        },
+        {
+          "client_id": "822594249400-2s5eha65q5rgtaqhedv29ppv58qbd5tj.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyD1PeRHAWbnZ3OyetnWhf1r4pcvtHOonYg"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "822594249400-2s5eha65q5rgtaqhedv29ppv58qbd5tj.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

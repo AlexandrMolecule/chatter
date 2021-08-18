@@ -20,7 +20,7 @@ class SplashView extends StatelessWidget {
             pushAndReplaceToPage(context, SignInView());
           } else if (snapshot == SplashState.existing_user) {
             pushAndReplaceToPage(context, HomeView());
-          } else {
+          } else{
             pushAndReplaceToPage(context, ProfileVerifyView());
           }
         },

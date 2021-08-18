@@ -24,8 +24,7 @@ class FriendsSelectionView extends StatelessWidget {
   Widget build(BuildContext context) {
     return MultiBlocProvider(
       providers: [
-        BlocProvider(
-            create: (context) => FriendsSelectionCubit(context.read())..init()),
+        BlocProvider( create: (context) => FriendsSelectionCubit(context.read())..init()),
         BlocProvider(create: (_) => FriendsGroupCubit()),
       ],
       child: BlocBuilder<FriendsGroupCubit, bool>(builder: (context, isGroup) {
@@ -35,7 +34,9 @@ class FriendsSelectionView extends StatelessWidget {
               context.read<FriendsSelectionCubit>().selectedUsers;
           return Scaffold(
             floatingActionButton: isGroup && selectedUsers.isNotEmpty
-                ? FloatingActionButton(onPressed: () {
+                ? FloatingActionButton(
+                  child: Icon(Icons.add),
+                  onPressed: () {
                     pushAndReplaceToPage(
                         context, GroupSelectionView(selectedUsers));
                   })
@@ -118,7 +119,9 @@ class FriendsSelectionView extends StatelessWidget {
                         itemBuilder: (context, index) {
                           final chatUserState = snapshot[index];
                           return ListTile(
-                            leading: CircleAvatar(),
+                            leading: CircleAvatar(
+                              backgroundImage: chatUserState.chatUser.image !=null?  NetworkImage(chatUserState.chatUser.image!) : null ,
+                            ),
                             title: Text(chatUserState.chatUser.name),
                             trailing: isGroup
                                 ? Checkbox(

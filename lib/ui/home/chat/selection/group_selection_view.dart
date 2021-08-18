@@ -8,14 +8,14 @@ import 'friends_selection_cubit.dart';
 import 'group_selection_cubit.dart';
 
 class GroupSelectionView extends StatelessWidget {
-  const GroupSelectionView(this.selecterdUsers);
+   const GroupSelectionView(this.selectedUsers);
 
-  final List<ChatUserState> selecterdUsers;
+  final List<ChatUserState> selectedUsers;
 
   @override
   Widget build(BuildContext context) {
     return BlocProvider(
-      create: (context)=> GroupSelectionCubit(selecterdUsers, context.read(), context.read()),
+      create: (context)=> GroupSelectionCubit(selectedUsers, context.read(), context.read()),
       child: BlocConsumer<GroupSelectionCubit, GroupSelectionState>(
         listener: (context, snapshot){
           if( snapshot.channel != null){
@@ -51,15 +51,17 @@ class GroupSelectionView extends StatelessWidget {
                   ),
                   Wrap(
                     children: List.generate(
-                      selecterdUsers.length,
+                      selectedUsers.length,
                       (index) => Column(
                         mainAxisSize: MainAxisSize.min,
-                        children: [CircleAvatar(), Text(selecterdUsers[index].chatUser.name)],
+                        children: [CircleAvatar(
+                          backgroundImage:  NetworkImage(selectedUsers[index].chatUser.image!),
+                        ), Text(selectedUsers[index].chatUser.name)],
                       ),
                     ),
                   ),
                   ElevatedButton(onPressed: context.read<GroupSelectionCubit>().createGroup
-                  , child: Text("Next"))
+                  , child: Text('Next'))
                 ],
               ),
             ),
