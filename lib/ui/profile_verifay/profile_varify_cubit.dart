@@ -5,9 +5,11 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
 class ProfileVerifyState {
-  const ProfileVerifyState(this.file, {this.succes = false});
+  const ProfileVerifyState(this.file,
+      {this.succes = false, this.loading = false});
   final File? file;
   final bool succes;
+  final bool loading;
 }
 
 class ProfileVerifyCubit extends Cubit<ProfileVerifyState> {
@@ -20,10 +22,11 @@ class ProfileVerifyCubit extends Cubit<ProfileVerifyState> {
   final ProfileSignInUseCase _profileSignInUseCase;
 
   void startChatting() async {
+    emit(ProfileVerifyState(null, loading: true));
     final file = state.file;
     final name = nameController.text;
     _profileSignInUseCase.verify(ProfileInput(name: name, imageFile: file!));
-    emit(ProfileVerifyState(file, succes: true));
+    emit(ProfileVerifyState(file, succes: true, loading: false));
   }
 
   void pickImage() async {

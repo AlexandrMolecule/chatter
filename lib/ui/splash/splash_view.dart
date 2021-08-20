@@ -6,6 +6,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
 import '../../navigator_utils.dart';
+import 'initial_background_view.dart';
 
 class SplashView extends StatelessWidget {
   const SplashView({Key? key}) : super(key: key);
@@ -25,7 +26,15 @@ class SplashView extends StatelessWidget {
           }
         },
         child: Scaffold(
-          backgroundColor: Colors.red,
+          body: Stack(children : [
+             InitialBackgroundView(),
+             Hero(
+               tag: 'logo_hero',
+               child: Center(
+                 child: Image.asset('assets/logo.png'),
+               ),
+             )
+          ]),
         ),
       ),
     );

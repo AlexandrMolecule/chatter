@@ -1,5 +1,6 @@
 import 'package:chatter/dependencies.dart';
 import 'package:chatter/ui/splash/splash_view.dart';
+import 'package:chatter/ui/themes.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
@@ -30,10 +31,17 @@ class MyApp extends StatelessWidget {
         child: BlocBuilder<AppThemeCubit, bool>(builder: (context, snapshot) {
           return MaterialApp(
             debugShowCheckedModeBanner: false,
-              title: 'Flutter Demo',
-              theme: snapshot ? ThemeData.dark() : ThemeData.light(),
+              title: 'Chatter', 
+              theme: snapshot ? Themes.themeDark : Themes.themeLight,
               builder: (context, child) {
-                return StreamChat(client: _streamChatClient, child: child);
+                return StreamChat(
+                  streamChatThemeData: StreamChatThemeData.fromTheme(Theme.of(context)).copyWith(
+                    ownMessageTheme: MessageTheme(
+                      messageBackgroundColor: Theme.of(context).accentColor,
+                      messageText: TextStyle(color: Colors.white),
+                    )
+                     ),
+                  client: _streamChatClient, child: child);
               },
               home: SplashView());
         }),
@@ -41,3 +49,6 @@ class MyApp extends StatelessWidget {
     );
   }
 }
+
+
+

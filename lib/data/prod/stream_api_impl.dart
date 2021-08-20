@@ -13,7 +13,7 @@ class StreamApiImpl extends StreamApiRepository {
     // await _client.disconnectUser();
     final token = await getToken(userId);
     await _client.connectUser(User(id: userId), token);
-    return _client.state.currentUser?.name != null;
+    return _client.state.currentUser?.name != null && _client.state.currentUser!.name != userId;
     // return false;
   }
 
