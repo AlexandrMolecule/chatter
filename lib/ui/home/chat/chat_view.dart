@@ -32,6 +32,7 @@ class ChatView extends StatelessWidget {
                   
 
                   print('image tap');
+                  
                   Navigator.of(context).push(PageRouteBuilder(
                       barrierDismissible: true,
                       opaque: false,
