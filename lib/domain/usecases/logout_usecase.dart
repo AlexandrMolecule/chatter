@@ -14,4 +14,7 @@ class LogoutUserCase {
     await streamApiRepository.logout();
     await authRepository.logout();
   }
+  Future<void> guestLogout() async {
+    await streamApiRepository.logout();
+  }
 }

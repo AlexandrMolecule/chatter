@@ -2,6 +2,7 @@ import 'package:chatter/data/auth_repository.dart';
 import 'package:chatter/data/stream_api__repository.dart';
 import 'package:chatter/domain/exceptions/auth_exception.dart';
 import 'package:chatter/domain/models/auth_user.dart';
+import 'package:stream_chat_flutter/stream_chat_flutter.dart';
 
 class LoginUseCase {
   LoginUseCase(
@@ -23,11 +24,12 @@ class LoginUseCase {
     }
     throw AuthException(AuthErrorCode.not_auth);
   }
-Future<AuthUser?> signIn() async{
- return await authRepository.signIn();
-}
 
+  Future<AuthUser?> signIn() async {
+    return await authRepository.signIn();
+  }
 
-
-
+  Future<OwnUser?> signInGuest(String id) async{
+    return await streamApiRepository.connectGuestUser(id);
+  }
 }

@@ -15,4 +15,8 @@ class SettingsLogoutCubit extends Cubit<void> {
     await _logoutUserCase.logout();
     emit(null);
   }
+  void guestlogOut() async {
+    await _logoutUserCase.guestLogout();
+    emit(null);
+  }
 }

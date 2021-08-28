@@ -5,7 +5,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
 import '../../navigator_utils.dart';
-import '../themes.dart';
 import 'sign_in_cubit.dart';
 
 class SignInView extends StatelessWidget {
@@ -59,6 +58,72 @@ class SignInView extends StatelessWidget {
                               color: Colors.grey, fontWeight: FontWeight.w600),
                         ),
                       ),
+                      Padding(
+                    padding:
+                        const EdgeInsets.symmetric(horizontal: 60, vertical: 20),
+                    child: TextField(
+                      controller:
+                          context.read<SignInCubit>().nameController,
+                    
+                      decoration: InputDecoration(
+                        
+                        filled: true,
+                        fillColor: Theme.of(context).bottomNavigationBarTheme.backgroundColor,
+                        hintText: 'Your nickname',
+                        contentPadding: const EdgeInsets.symmetric(horizontal: 30, vertical: 20),
+                        focusedBorder: InputBorder.none,
+                        enabledBorder: InputBorder.none
+                      ),
+                      // decoration: InputDecoration(
+                      //     fillColor: Theme.of(context).bottomNavigationBarTheme.backgroundColor,
+                      //     hintText: 'or just blabla',
+                      //     hintStyle: TextStyle(fontSize: 13, color: Colors.grey[400]),
+                      //     border: InputBorder.none,
+                      //     enabledBorder: InputBorder.none),
+                    ),
+                  ),
+                      SizedBox(
+                        height: 5,
+                      ),
+                      Material(
+                        elevation: 2,
+                        shadowColor: Colors.black45,
+                        shape: RoundedRectangleBorder(
+                          borderRadius: BorderRadius.circular(10),
+                        ),
+                        color: Theme.of(context)
+                            .bottomNavigationBarTheme
+                            .backgroundColor,
+                        child: InkWell(
+                          onTap: () {
+                            context.read<SignInCubit>().nameController.text.isNotEmpty? 
+                           context.read<SignInCubit>().anonSign() : print('please pin your login');
+                  
+                          },
+                          child: Padding(
+                            padding: const EdgeInsets.all(20.0),
+                            child: Row(
+                              mainAxisAlignment: MainAxisAlignment.center,
+                              children: [
+                                Icon(
+                                  Icons.person,
+                                  size: 30,
+                                ),
+                                const SizedBox(
+                                  width: 15,
+                                ),
+                                Text(
+                                  'Guest Sign In',
+                                  style: TextStyle(
+                                      color: Colors.black,
+                                      fontWeight: FontWeight.w500),
+                                )
+                              ],
+                            ),
+                          ),
+                        ),
+                      ),
+                      Center(child: SizedBox(height: 20, child: Text('or'),)),
                       Material(
                         elevation: 2,
                         shadowColor: Colors.black45,
@@ -84,9 +149,12 @@ class SignInView extends StatelessWidget {
                                 const SizedBox(
                                   width: 15,
                                 ),
-                                Text('Login with Google', style: TextStyle(
-                                color: Colors.black,
-                                 fontWeight: FontWeight.w500),)
+                                Text(
+                                  'Login with Google',
+                                  style: TextStyle(
+                                      color: Colors.black,
+                                      fontWeight: FontWeight.w500),
+                                )
                               ],
                             ),
                           ),

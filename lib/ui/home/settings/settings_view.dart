@@ -49,7 +49,7 @@ class SettingsView extends StatelessWidget {
                       onTap: (){} ,
                     ),
                     Text(
-            user.name,
+            user.role == 'user'? user.name : 'guest',
             style: TextStyle(fontSize: 24, color: textColor, fontWeight: FontWeight.w800),
           ),
           SizedBox(height: 15,),
@@ -78,7 +78,8 @@ class SettingsView extends StatelessWidget {
                     },
                     child: GestureDetector(
                         onTap: () {
-                          context.read<SettingsLogoutCubit>().logOut();
+                          user?.role == 'user'?
+                          context.read<SettingsLogoutCubit>().logOut() :  context.read<SettingsLogoutCubit>().guestlogOut() ;
                         },
                         child: Row(children: [
                   Icon(Icons.login),

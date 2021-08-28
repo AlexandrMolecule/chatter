@@ -72,4 +72,10 @@ class StreamApiLocalImpl extends StreamApiRepository {
   Future<void> logout() {
     return _client.disconnectUser();
   }
+
+  @override
+  Future<OwnUser?> connectGuestUser(String id) {
+    // TODO: implement connectGuestUser
+    throw UnimplementedError();
+  }
 }

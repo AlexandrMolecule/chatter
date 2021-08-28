@@ -1,5 +1,4 @@
 import 'package:chatter/data/stream_api__repository.dart';
-import 'package:stream_chat/src/client/channel.dart';
 import 'package:chatter/domain/models/chat_user.dart';
 import 'package:stream_chat_flutter/stream_chat_flutter.dart';
 
@@ -28,6 +27,11 @@ class StreamApiImpl extends StreamApiRepository {
     }
     // await _client.disconnectUser();
     await _client.connectUser(User(id: user.id!, extraData: extraData), token);
+    return user;
+  }
+
+  Future<OwnUser?> connectGuestUser(String id) async {
+    final user = await _client.connectGuestUser(User(id: id));
     return user;
   }
 
