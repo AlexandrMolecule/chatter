@@ -7,6 +7,10 @@ In this app you can create private and group chats.
 Log in with Google, Guest Auth.
 Also you can change ui theme.
 
-
+How to install?
+git clone https://github.com/AlexandrMolecule/chatter
+cd chatter
+flutter packages get
+flutter run
 
 Design  taken from https://dribbble.com/daniAlav.
